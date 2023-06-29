@@ -1,0 +1,14 @@
+write ui for views
+add tab items custom
+add navigation bar as in swiftui
+add json parsing for the first view
+add json parsing for the second view
+add popping view for the second view
+combine for the cart view (if empty - dont add buttons for plus, if got smth - add it)
+content view dont need cause all the job for main coordinator (dont touch app coordinator - its just for the first screen)
+change category view controller to swift ui screen
+let it be with detail view as it is
+change cart view controller to swiftui screen
+add view model for dishes screen
+in view models add json fetching
+add json files 
