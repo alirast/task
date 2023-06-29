@@ -1,4 +1,5 @@
 write ui for views
+add in coordinator as *onboarding example, not view controller*
 add tab items custom
 add navigation bar as in swiftui
 add json parsing for the first view
