@@ -11,7 +11,20 @@ import SwiftUI
 struct CategoryView: View {
     @ObservedObject var viewModel: CategoryViewModel
     var body: some View {
-        Text("Category")
+        ScrollView {
+            ForEach(0..<5) { item in
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .foregroundColor(Color.red)
+                    .frame(maxWidth: 343)
+                    .frame(height: 148)
+                    .padding(5)
+                    .overlay {
+                        VStack(alignment: .leading) {
+                            Text("id name")
+                        }
+                    }
+            }
+        }
     }
 }
 

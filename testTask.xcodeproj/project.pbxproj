@@ -28,6 +28,7 @@
 		4F9B14A02A4DF09B00610065 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B149F2A4DF09B00610065 /* CartViewController.swift */; };
 		4F9B14A22A4DFC8B00610065 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14A12A4DFC8B00610065 /* CategoryViewModel.swift */; };
 		4F9B14A42A4E186D00610065 /* toDo in Resources */ = {isa = PBXBuildFile; fileRef = 4F9B14A32A4E186D00610065 /* toDo */; };
+		4F9B14A62A4E37AE00610065 /* ChosenDishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14A52A4E37AE00610065 /* ChosenDishView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		4F9B149F2A4DF09B00610065 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		4F9B14A12A4DFC8B00610065 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		4F9B14A32A4E186D00610065 /* toDo */ = {isa = PBXFileReference; lastKnownFileType = text; path = toDo; sourceTree = "<group>"; };
+		4F9B14A52A4E37AE00610065 /* ChosenDishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenDishView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				4F9B14892A4DDB1E00610065 /* SearchView.swift */,
 				4F9B148B2A4DDB2B00610065 /* CartView.swift */,
 				4F9B148D2A4DDB3400610065 /* AccountView.swift */,
+				4F9B14A52A4E37AE00610065 /* ChosenDishView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				4F9B147C2A4DCD7100610065 /* AppCoordinator.swift in Sources */,
 				4F9B148A2A4DDB1E00610065 /* SearchView.swift in Sources */,
 				4F9B14862A4DDAB600610065 /* CategoryView.swift in Sources */,
+				4F9B14A62A4E37AE00610065 /* ChosenDishView.swift in Sources */,
 				4F9B149C2A4DF06C00610065 /* CategoryViewController.swift in Sources */,
 				4F9B149E2A4DF08E00610065 /* FirstDetailView.swift in Sources */,
 				4F9B148E2A4DDB3400610065 /* AccountView.swift in Sources */,

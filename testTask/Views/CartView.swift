@@ -10,7 +10,20 @@ import SwiftUI
 
 struct CartView: View {
     var body: some View {
-        Text("cart")
+        VStack {
+            Spacer()
+            Button {
+                print("Оплатить")
+            } label: {
+                Text("Оплатить")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .frame(width: 360, height: 44)
+                    .background(Color(.systemBlue))
+                    .cornerRadius(10)
+            }.padding(.bottom)
+        }
     }
 }
 
