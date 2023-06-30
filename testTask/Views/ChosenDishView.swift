@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ChosenDishView: View {
+    let treat: Item
+    @Binding var isShowingDetailView: Bool
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
             VStack(spacing: 25) {
@@ -20,7 +22,7 @@ struct ChosenDishView: View {
                 Text("Information about the product and the price of it")
                 
                 Button(action: {}) {
-                    Text("Buy")
+                    Text("Добавить в корзину")
                     .foregroundColor(.black)
                     .fontWeight(.bold)
                     .padding(.vertical, 10)
@@ -36,12 +38,13 @@ struct ChosenDishView: View {
             
             Button(action: {
                 withAnimation {
-                    
+                   isShowingDetailView = false
                 }
             }) {
                 Image(systemName: "xmark.circle")
                     .font(.system(size: 28, weight: .bold))
                     .foregroundColor(.purple)
+                Image(systemName: "xmark.circle")
             }
             .padding()
         }
@@ -55,6 +58,6 @@ struct ChosenDishView: View {
 
 struct ChosenDishView_Previews: PreviewProvider {
     static var previews: some View {
-        ChosenDishView()
+        ChosenDishView(treat: MockItem.sampleItem, isShowingDetailView: .constant(true))
     }
 }

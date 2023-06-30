@@ -9,8 +9,7 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    //@State private var isShowingSecondScreen = false
-
+    
     //var window: UIWindow?
     var applicationCoordinator: AppCoordinator?
 
