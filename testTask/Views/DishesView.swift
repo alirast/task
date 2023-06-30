@@ -28,7 +28,6 @@ struct Teg: Decodable {
 }
 
 class GridViewModel: ObservableObject {
-    @Published var items = 0..<5
     
     @Published var dishes = [Item]()
     @Published var selectedDish: Item?
@@ -71,11 +70,11 @@ struct DishesView: View {
                     HStack(alignment: .top) {
                         ForEach(0..<10) { i in
                             RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.gray).brightness(0.4)
-                                .frame(width: 100, height: 50)
+                                .fill(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
+                                .frame(width: 80, height: 35)
                                 .overlay {
                                     VStack(alignment: .leading) {
-                                        Text("Тэги")
+                                        Text("Тэги").font(.custom("SFProDisplay", fixedSize: 14))
                                     }
                                 }
                         }
@@ -88,18 +87,19 @@ struct DishesView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Spacer()
                                     .frame(width: 109, height: 109)
+                                    .background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
                                     .background(Color.gray)
                                     .cornerRadius(10)
                                     .overlay {
                                         AsyncImage(url: URL(string: dish.image_url)) { image in
                                             image.resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 79, maxHeight: 88, alignment: .center)
                                         } placeholder: {
-                                            Image(systemName: "person")
+                                            Image(systemName: "photo.on.rectangle.angled")
                                         }
                                     }
                                 
                                 Text(dish.name)
-                                    .font(.system(size: 10, weight: .semibold))
+                                    .font(.custom("SFProDisplay", fixedSize: 14)).frame(maxWidth: .infinity, alignment: .leading)
                             }
                             .onTapGesture {
                                 print("CHOSEN")

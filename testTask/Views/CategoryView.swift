@@ -23,6 +23,7 @@ struct CategoryView: View {
                     .frame(maxWidth: 343)
                     .frame(height: 148)
                     .padding(5)
+                    .frame(alignment: .top)
                     .overlay {
                         VStack(alignment: .leading) {
                             Text("id name")
