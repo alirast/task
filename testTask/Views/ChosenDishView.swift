@@ -8,18 +8,36 @@
 import SwiftUI
 
 struct ChosenDishView: View {
+    //@ObservedObject var viewModel: GridViewModel
     let treat: Item
     @Binding var isShowingDetailView: Bool
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
             VStack(spacing: 25) {
-                Image(systemName: "person")
-                
-                Text("Congrats")
-                    .font(.title)
-                    .foregroundColor(.pink)
-                
-                Text("Information about the product and the price of it")
+                Spacer()
+                    .frame(width: 300, height: 300)
+                    .background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
+                    .cornerRadius(10)
+                    .overlay {
+                        AsyncImage(url: URL(string: treat.image_url)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: 79,
+                                       maxHeight: 88,
+                                       alignment: .center)
+                        } placeholder: {
+                            Image(systemName: "photo.on.rectangle.angled")
+                        }
+                    }
+                HStack {
+                    Text("\(treat.price)₽")
+                    Text("•")
+                    Text("\(treat.weight)г")
+                }
+    
+                Text(treat.name)
+                Text(treat.description)
                 
                 Button(action: {}) {
                     Text("Добавить в корзину")
@@ -41,16 +59,14 @@ struct ChosenDishView: View {
                    isShowingDetailView = false
                 }
             }) {
-                Image(systemName: "xmark.circle")
+                Image(systemName: "heart")
                     .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(.purple)
-                Image(systemName: "xmark.circle")
+                    .foregroundColor(.black)
+                Image(systemName: "xmark").font(.system(size: 28, weight: .bold)).foregroundColor(.black)
             }
-            .padding()
+            .padding(.all)
         }
         .frame(maxWidth: 300, maxHeight: 400)
-        //.background(Color.primary.opacity(0.25))
-        //.background(.regularMaterial)
         .shadow(radius: 40)
         }
     }

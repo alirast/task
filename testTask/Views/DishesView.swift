@@ -10,7 +10,7 @@ import SwiftUI
 
 //mock items
 struct MockItem: Decodable {
-    static let sampleItem = Item(name: "mock", image_url: "")
+    static let sampleItem = Item(id: 1, name: "rice", price: 799, weight: 560, description: "In china we have a lot of rice", image_url: "person")
 }
 
 struct DetailedMenu: Decodable {
@@ -18,7 +18,11 @@ struct DetailedMenu: Decodable {
 }
 
 struct Item: Decodable, Hashable {
+    let id: Int
     let name: String
+    let price: Int
+    let weight: Int
+    let description: String
     let image_url: String
     
 }
@@ -41,7 +45,6 @@ class GridViewModel: ObservableObject {
                 //check response
                 do {
                     let menu = try JSONDecoder().decode(DetailedMenu.self, from: data)
-                    //print(menu)
                     DispatchQueue.main.async {
                         self.dishes = menu.dishes
                     }
@@ -50,9 +53,6 @@ class GridViewModel: ObservableObject {
                     print("failed to decode \(error.localizedDescription)")
                 }
             }.resume()
-            
-      
-            
         }
     }
 
@@ -117,7 +117,10 @@ struct DishesView: View {
                 
             }
             if vm.isShowingDetailView {
-                ChosenDishView(treat: vm.selectedDish!, isShowingDetailView: $vm.isShowingDetailView)
+                if let selectedItemInMenu = vm.selectedDish {
+                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView)
+                    //ChosenDishView(treat: vm.selectedDish!, isShowingDetailView: $vm.isShowingDetailView)
+                }
             }
             
         }

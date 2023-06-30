@@ -35,7 +35,6 @@ class CategoryCoordinator: CoordinatorProtocol {
     var rootViewController: UINavigationController
     init() {
         rootViewController = UINavigationController()
-        rootViewController.navigationBar.prefersLargeTitles = true
     }
     
     lazy var firstVC: UIViewController = {

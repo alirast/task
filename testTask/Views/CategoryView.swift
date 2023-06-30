@@ -8,8 +8,46 @@
 import SwiftUI
 //with categories
 
+struct MockCategory: Decodable {
+    static let sampleCategory = Category(id: 1, name: "Mor", image_url: "person")
+}
+
+struct MainScreen: Decodable {
+    let categories: [Category]
+}
+
+struct Category: Decodable, Hashable {
+    let id: Int
+    let name: String
+    let image_url: String
+}
+
+class CategoryMainViewModel: ObservableObject {
+    @Published var categories = [Category]()
+    @Published var selectedCategory: Category?
+    
+    init() {
+//TODO: - where is the data
+        guard let url = URL(string: "https://run.mocky.io/v3/058729bd-1402-4578-88de-265481fd7d54") else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
+            //print(data)
+            do {
+                let mainMenu = try JSONDecoder().decode(MainScreen.self, from: data)
+                print(mainMenu.categories)
+                DispatchQueue.main.async {
+                    self.categories = mainMenu.categories
+                }
+            } catch {
+                print("category failed to decode \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+}
+
+
 struct CategoryView: View {
-    //@ObservedObject var viewModel: CategoryViewModel
+    @ObservedObject var viewModel = CategoryMainViewModel()
     
     //var coordinator: CoordinatorProtocol
     
@@ -17,7 +55,7 @@ struct CategoryView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(0..<5) { item in
+            ForEach(0..<10, id: \.self) { category in
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .foregroundColor(Color.red)
                     .frame(maxWidth: 343)
@@ -26,7 +64,7 @@ struct CategoryView: View {
                     .frame(alignment: .top)
                     .overlay {
                         VStack(alignment: .leading) {
-                            Text("id name")
+                            Text("smth")
                         }
                     }
                     .onTapGesture {
@@ -35,30 +73,7 @@ struct CategoryView: View {
                     }
             }
         }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Image("locationPin").resizable().font(Font.system(.largeTitle).bold()).frame(width: 24, height: 24)
-                
-                VStack(alignment: .leading) {
-                    Text("Санкт-Петербург").font(.custom("SFProDisplay", size: 18).bold())
-                    Text(getCurrentDate()).font(.custom("SFProDisplay", size: 14)).foregroundColor(.gray)
-                }
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Image("profilePicture").resizable().frame(width: 44, height: 44).clipShape(Circle()).padding(.trailing)
-
-            }
-        }
-        //.navigationBarTitle("Category view")
-    }
-    
-    
-    private func getCurrentDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMMM, yyyy"
-        formatter.locale = Locale(identifier: "ru_RU")
-        return formatter.string(from: Date())
+        .toolbar { ToolContent() }   
     }
 }
 

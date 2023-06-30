@@ -9,6 +9,7 @@ import SwiftUI
 //cart
 
 struct CartView: View {
+    //let treat: Item
     var body: some View {
         VStack {
             Spacer()
@@ -23,6 +24,9 @@ struct CartView: View {
                     .background(Color(.systemBlue))
                     .cornerRadius(10)
             }.padding(.bottom)
+        }
+        .toolbar {
+            ToolContent()
         }
     }
 }

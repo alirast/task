@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 class MainCoordinator: CoordinatorProtocol {
     /*var rootViewController: UITabBarController
     
@@ -54,7 +55,6 @@ class MainCoordinator: CoordinatorProtocol {
         //make it without blur
         rootViewController.tabBar.backgroundColor = .white
         rootViewController.tabBar.tintColor = UIColor(red: CGFloat(51.0/255), green: CGFloat(100.0/255), blue: CGFloat(224.0/255), alpha: 1.0)
-        
     }
     
     func start() {
@@ -63,7 +63,7 @@ class MainCoordinator: CoordinatorProtocol {
         self.childCoordinators.append(categoryCoordinator)
         let categoryVC = categoryCoordinator.rootViewController
         categoryVC.tabBarItem = UITabBarItem(title: "Главная", image: UIImage(named: "category"), selectedImage: nil)
-        
+     
         let searchCoordinator = SearchCoordinator()
         searchCoordinator.start()
         self.childCoordinators.append(searchCoordinator)
@@ -86,3 +86,4 @@ class MainCoordinator: CoordinatorProtocol {
         
     }
 }
+
