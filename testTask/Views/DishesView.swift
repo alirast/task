@@ -66,6 +66,7 @@ struct DishesView: View {
     
     @ObservedObject var vm = GridViewModel()
     @State private var selectedTag: String?
+    //@StateObject var ord = Order()
    
     let data = Array(1...100).map({ "Item\($0)" })
     let layout = [GridItem(.adaptive(minimum: 90), alignment: .top)]
@@ -134,7 +135,7 @@ struct DishesView: View {
             }
             if vm.isShowingDetailView {
                 if let selectedItemInMenu = vm.selectedDish {
-                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView)
+                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView)//.environmentObject(ord)
                     //ChosenDishView(treat: vm.selectedDish!, isShowingDetailView: $vm.isShowingDetailView)
                 }
             }

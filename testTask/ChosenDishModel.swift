@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Order: ObservableObject {
+/*final class Order: ObservableObject {
     @Published var items = [Item]()
     
     var totalPrice: Int {
@@ -22,4 +22,4 @@ final class Order: ObservableObject {
     func deleteItems(at offsets: IndexSet) {
         items.remove(atOffsets: offsets)
     }
-}
+}*/

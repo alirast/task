@@ -10,12 +10,12 @@ import UIKit
 import SwiftUI
 
 class CartCoordinator: CoordinatorProtocol {
-    @StateObject var order = Order()
+    //@StateObject var order = Order()
     
     var rootViewController = UINavigationController()
     lazy var cartViewController: UIViewController = {
         var viewController = UIViewController()
-        let view = CartView().environmentObject(order)
+        let view = CartView()
         viewController = UIHostingController(rootView: view)
         return viewController
     }()
