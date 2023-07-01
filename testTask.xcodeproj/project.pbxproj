@@ -21,12 +21,6 @@
 		4F9B148C2A4DDB2B00610065 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B148B2A4DDB2B00610065 /* CartView.swift */; };
 		4F9B148E2A4DDB3400610065 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B148D2A4DDB3400610065 /* AccountView.swift */; };
 		4F9B14942A4DEDBE00610065 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14932A4DEDBE00610065 /* MainCoordinator.swift */; };
-		4F9B14962A4DEEAF00610065 /* CategoryTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14952A4DEEAE00610065 /* CategoryTabCoordinator.swift */; };
-		4F9B14982A4DEF3000610065 /* CartTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14972A4DEF3000610065 /* CartTabCoordinator.swift */; };
-		4F9B149C2A4DF06C00610065 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B149B2A4DF06C00610065 /* CategoryViewController.swift */; };
-		4F9B149E2A4DF08E00610065 /* FirstDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B149D2A4DF08E00610065 /* FirstDetailView.swift */; };
-		4F9B14A02A4DF09B00610065 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B149F2A4DF09B00610065 /* CartViewController.swift */; };
-		4F9B14A22A4DFC8B00610065 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14A12A4DFC8B00610065 /* CategoryViewModel.swift */; };
 		4F9B14A42A4E186D00610065 /* toDo in Resources */ = {isa = PBXBuildFile; fileRef = 4F9B14A32A4E186D00610065 /* toDo */; };
 		4F9B14A62A4E37AE00610065 /* ChosenDishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14A52A4E37AE00610065 /* ChosenDishView.swift */; };
 		4F9B14A92A4EBAD200610065 /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14A82A4EBAD200610065 /* CategoryCoordinator.swift */; };
@@ -54,12 +48,6 @@
 		4F9B148B2A4DDB2B00610065 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		4F9B148D2A4DDB3400610065 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		4F9B14932A4DEDBE00610065 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		4F9B14952A4DEEAE00610065 /* CategoryTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTabCoordinator.swift; sourceTree = "<group>"; };
-		4F9B14972A4DEF3000610065 /* CartTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTabCoordinator.swift; sourceTree = "<group>"; };
-		4F9B149B2A4DF06C00610065 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		4F9B149D2A4DF08E00610065 /* FirstDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDetailView.swift; sourceTree = "<group>"; };
-		4F9B149F2A4DF09B00610065 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
-		4F9B14A12A4DFC8B00610065 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		4F9B14A32A4E186D00610065 /* toDo */ = {isa = PBXFileReference; lastKnownFileType = text; path = toDo; sourceTree = "<group>"; };
 		4F9B14A52A4E37AE00610065 /* ChosenDishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenDishView.swift; sourceTree = "<group>"; };
 		4F9B14A82A4EBAD200610065 /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -156,10 +144,6 @@
 		4F9B14992A4DF03E00610065 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				4F9B14952A4DEEAE00610065 /* CategoryTabCoordinator.swift */,
-				4F9B149B2A4DF06C00610065 /* CategoryViewController.swift */,
-				4F9B149D2A4DF08E00610065 /* FirstDetailView.swift */,
-				4F9B14A12A4DFC8B00610065 /* CategoryViewModel.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -167,8 +151,6 @@
 		4F9B149A2A4DF04C00610065 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
-				4F9B14972A4DEF3000610065 /* CartTabCoordinator.swift */,
-				4F9B149F2A4DF09B00610065 /* CartViewController.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -259,23 +241,17 @@
 				4F9B148A2A4DDB1E00610065 /* SearchView.swift in Sources */,
 				4F9B14862A4DDAB600610065 /* CategoryView.swift in Sources */,
 				4F9B14A62A4E37AE00610065 /* ChosenDishView.swift in Sources */,
-				4F9B149C2A4DF06C00610065 /* CategoryViewController.swift in Sources */,
 				4F9B14AD2A4F2C6F00610065 /* CartCoordinator.swift in Sources */,
-				4F9B149E2A4DF08E00610065 /* FirstDetailView.swift in Sources */,
 				4F9B148E2A4DDB3400610065 /* AccountView.swift in Sources */,
 				4F9B14672A4DC7F800610065 /* ViewController.swift in Sources */,
 				4F9B14A92A4EBAD200610065 /* CategoryCoordinator.swift in Sources */,
 				4F9B14632A4DC7F800610065 /* AppDelegate.swift in Sources */,
-				4F9B14A22A4DFC8B00610065 /* CategoryViewModel.swift in Sources */,
-				4F9B14962A4DEEAF00610065 /* CategoryTabCoordinator.swift in Sources */,
 				4F9B14AB2A4ECF1F00610065 /* SearchCoordinator.swift in Sources */,
 				4F9B147A2A4DCD2200610065 /* CoordinatorProtocol.swift in Sources */,
 				4F9B14772A4DC9B200610065 /* ContentView.swift in Sources */,
 				4F9B14AF2A4F2D6F00610065 /* AccountCoordinator.swift in Sources */,
-				4F9B14982A4DEF3000610065 /* CartTabCoordinator.swift in Sources */,
 				4F9B14882A4DDAD200610065 /* DishesView.swift in Sources */,
 				4F9B14942A4DEDBE00610065 /* MainCoordinator.swift in Sources */,
-				4F9B14A02A4DF09B00610065 /* CartViewController.swift in Sources */,
 				4F9B14652A4DC7F800610065 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

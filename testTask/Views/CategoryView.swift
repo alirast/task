@@ -24,10 +24,11 @@ struct Category: Decodable, Hashable {
 
 class CategoryMainViewModel: ObservableObject {
     @Published var categories = [Category]()
-    @Published var selectedCategory: Category?
+    //@Published var selectedCategory: Category?
+    
+    
     
     init() {
-//TODO: - where is the data
         guard let url = URL(string: "https://run.mocky.io/v3/058729bd-1402-4578-88de-265481fd7d54") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
@@ -48,9 +49,6 @@ class CategoryMainViewModel: ObservableObject {
 
 struct CategoryView: View {
     @ObservedObject var viewModel = CategoryMainViewModel()
-    
-    //var coordinator: CoordinatorProtocol
-    
     var roundRectRequested: () -> ()
     
     var body: some View {
@@ -62,7 +60,8 @@ struct CategoryView: View {
                         } placeholder: {
                             Image(systemName: "photo.on.rectangle.angled").resizable().aspectRatio(contentMode: .fit).frame(width: 343, height: 148)
                         }
-                        
+//Text(category.name)
+                       
                         Text(category.name).padding(.leading, 16).padding(.top, 12).lineLimit(2).font(.custom("SFProDisplay", size: 20).bold())
                     }
                     .onTapGesture {
@@ -71,7 +70,7 @@ struct CategoryView: View {
                     }
             }
         }
-        .toolbar { ToolContent() }   
+        .toolbar { ToolContent() }  
     }
 }
 
