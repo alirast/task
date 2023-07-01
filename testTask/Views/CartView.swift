@@ -10,18 +10,56 @@ import SwiftUI
 
 struct CartView: View {
     //@EnvironmentObject var order: Order
+    
+    @State private var number = 1
+    
     var body: some View {
+        
         VStack {
-            VStack(alignment: .leading) {
-                HStack {
-                    Image(systemName: "person")
-                    VStack {
-                        Text("Salad")
-                        Text("Price")
+            Spacer()
+            HStack {
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        Spacer().frame(width: 62, height: 62).background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255))).cornerRadius(10).overlay {
+                            Image(systemName: "person")
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Salad").font(.custom("SFProDisplay", size: 14))
+                            HStack(spacing: 3) {
+                                Text("Price₽").font(.custom("SFProDisplay", size: 14))
+                                Text("•").foregroundColor(.gray)
+                                Text("Weight").font(.custom("SFProDisplay", size: 14)).foregroundColor(.gray)
+                            }
+                            
+                        }
                     }
-                }
-            }.frame(width: 300, alignment: .leading)
-            
+                }.frame(width: 250, alignment: .leading)
+                
+                VStack(alignment: .trailing) {
+                    HStack {
+                        Spacer()
+                            .frame(width: 99, height: 32).background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255))).cornerRadius(10).overlay {
+                                HStack(spacing: 20) {
+                                    Button(action: {
+                                        if number > 0 {
+                                            number -= 1
+                                        }
+                                    }) {
+                                        Image(systemName: "minus").foregroundColor(.black)
+                                    }
+                                    Text("\(number)")
+                                    
+                                    Button(action: {
+                                        number += 1
+                                    }) {
+                                        Image(systemName: "plus").foregroundColor(.black)
+                                    }
+                                }
+                            }
+                    }
+                }.frame(width: 100, alignment: .trailing)
+            }
             Spacer()
             
             List {
