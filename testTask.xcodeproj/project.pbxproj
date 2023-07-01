@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F4692DB2A504A3E00D3B7F1 /* ChosenDishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4692DA2A504A3E00D3B7F1 /* ChosenDishModel.swift */; };
 		4F9B14632A4DC7F800610065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14622A4DC7F800610065 /* AppDelegate.swift */; };
 		4F9B14652A4DC7F800610065 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14642A4DC7F800610065 /* SceneDelegate.swift */; };
 		4F9B146C2A4DC7FA00610065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F9B146B2A4DC7FA00610065 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F4692DA2A504A3E00D3B7F1 /* ChosenDishModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenDishModel.swift; sourceTree = "<group>"; };
 		4F9B145F2A4DC7F800610065 /* testTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9B14622A4DC7F800610065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F9B14642A4DC7F800610065 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				4F9B14AC2A4F2C6F00610065 /* CartCoordinator.swift */,
 				4F9B14AE2A4F2D6F00610065 /* AccountCoordinator.swift */,
 				4F9B14B22A4F892C00610065 /* ToolBarCoordinator.swift */,
+				4F4692DA2A504A3E00D3B7F1 /* ChosenDishModel.swift */,
 			);
 			path = testTask;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				4F9B148A2A4DDB1E00610065 /* SearchView.swift in Sources */,
 				4F9B14862A4DDAB600610065 /* CategoryView.swift in Sources */,
 				4F9B14A62A4E37AE00610065 /* ChosenDishView.swift in Sources */,
+				4F4692DB2A504A3E00D3B7F1 /* ChosenDishModel.swift in Sources */,
 				4F9B14AD2A4F2C6F00610065 /* CartCoordinator.swift in Sources */,
 				4F9B148E2A4DDB3400610065 /* AccountView.swift in Sources */,
 				4F9B14A92A4EBAD200610065 /* CategoryCoordinator.swift in Sources */,

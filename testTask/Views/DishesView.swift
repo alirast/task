@@ -65,6 +65,7 @@ class GridViewModel: ObservableObject {
 struct DishesView: View {
     
     @ObservedObject var vm = GridViewModel()
+    @StateObject var ord = Order()
 
     
     let data = Array(1...100).map({ "Item\($0)" })
@@ -128,7 +129,7 @@ struct DishesView: View {
             }
             if vm.isShowingDetailView {
                 if let selectedItemInMenu = vm.selectedDish {
-                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView)
+                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView).environmentObject(ord)
                     //ChosenDishView(treat: vm.selectedDish!, isShowingDetailView: $vm.isShowingDetailView)
                 }
             }

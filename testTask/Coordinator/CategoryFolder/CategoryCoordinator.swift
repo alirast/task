@@ -1,5 +1,5 @@
 //
-//  OnboardingCoordinator.swift
+//  CategoryCoordinator.swift
 //  testTask
 //
 //  Created by N S on 30.06.2023.

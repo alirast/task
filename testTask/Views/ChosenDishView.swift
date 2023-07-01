@@ -11,6 +11,8 @@ struct ChosenDishView: View {
     //@ObservedObject var viewModel: GridViewModel
     let treat: Item
     @Binding var isShowingDetailView: Bool
+    @EnvironmentObject var order: Order
+    
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
             VStack(spacing: 25) {
@@ -39,7 +41,10 @@ struct ChosenDishView: View {
                 Text(treat.name)
                 Text(treat.description)
                 
-                Button(action: {}) {
+                Button(action: {
+                    order.add(treat)
+                    isShowingDetailView = false
+                }) {
                     Text("Добавить в корзину")
                     .foregroundColor(.black)
                     .fontWeight(.bold)
@@ -69,6 +74,7 @@ struct ChosenDishView: View {
         .frame(maxWidth: 300, maxHeight: 400)
         .shadow(radius: 40)
         }
+    
     }
 
 

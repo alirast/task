@@ -9,14 +9,27 @@ import SwiftUI
 //cart
 
 struct CartView: View {
-    //let treat: Item
+    @EnvironmentObject var order: Order
     var body: some View {
         VStack {
             Spacer()
+            
+            List {
+                ForEach(order.items, id: \.self) { treat in
+                    Text("treat")
+                }
+                .onDelete(perform: order.deleteItems)
+            }
+            .listStyle(.plain)
+            
+            if order.items.isEmpty {
+                Text("you have nothing to pay for")
+            }
+            
             Button {
                 print("Оплатить")
             } label: {
-                Text("Оплатить")
+                Text("Оплатить \(order.totalPrice, specifier: "%.2f")")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
@@ -24,7 +37,11 @@ struct CartView: View {
                     .background(Color(.systemBlue))
                     .cornerRadius(10)
             }.padding(.bottom)
+            
+
         }
+
+        
         .toolbar {
             ToolContent()
         }
