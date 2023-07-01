@@ -64,9 +64,13 @@ class GridViewModel: ObservableObject {
 
 struct DishesView: View {
     
+    @Environment(\.dismiss) private var dismiss
+    
     @ObservedObject var vm = GridViewModel()
     @State private var selectedTag: String?
     //@StateObject var ord = Order()
+    @State var name = ""
+  
    
     let data = Array(1...100).map({ "Item\($0)" })
     let layout = [GridItem(.adaptive(minimum: 90), alignment: .top)]
@@ -74,6 +78,7 @@ struct DishesView: View {
     var body: some View {
         ZStack {
             VStack {
+                Spacer()
                 ScrollView(.horizontal) {
                     HStack(alignment: .top) {
                         ForEach(vm.tegs.indices, id: \.self) { tegIndex in
@@ -141,7 +146,10 @@ struct DishesView: View {
             }
             
         }
-   
+        .navigationTitle(name)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: NavBackButton(dismiss: self.dismiss))
+        
         .toolbar {
             CategoryToolbar()
             
@@ -152,5 +160,17 @@ struct DishesView: View {
 struct DishesView_Previews: PreviewProvider {
     static var previews: some View {
         DishesView()
+    }
+}
+
+struct NavBackButton: View {
+    let dismiss: DismissAction
+    
+    var body: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.backward").foregroundColor(.black)
+        }
     }
 }

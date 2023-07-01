@@ -24,10 +24,7 @@ struct Category: Decodable, Hashable {
 
 class CategoryMainViewModel: ObservableObject {
     @Published var categories = [Category]()
-    //@Published var selectedCategory: Category?
-    
-    
-    
+
     init() {
         guard let url = URL(string: "https://run.mocky.io/v3/058729bd-1402-4578-88de-265481fd7d54") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -49,7 +46,7 @@ class CategoryMainViewModel: ObservableObject {
 
 struct CategoryView: View {
     @ObservedObject var viewModel = CategoryMainViewModel()
-    var roundRectRequested: () -> ()
+    var roundRectRequested: (_ name: String) -> ()
     
     var body: some View {
         ScrollView {
@@ -66,7 +63,8 @@ struct CategoryView: View {
                     }
                     .onTapGesture {
                         print("tapped rounded rectangle")
-                        roundRectRequested()
+                        roundRectRequested(category.name)
+                        
                     }
             }
         }
@@ -76,7 +74,7 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(roundRectRequested: {  })
+        CategoryView(roundRectRequested: { name in })
         
         //let viewModel = CategoryViewModel()
         //CategoryView(viewModel: viewModel)
