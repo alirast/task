@@ -13,7 +13,7 @@ struct MockCategory: Decodable {
 }
 
 struct MainScreen: Decodable {
-    let categories: [Category]
+    let сategories: [Category]
 }
 
 struct Category: Decodable, Hashable {
@@ -34,9 +34,9 @@ class CategoryMainViewModel: ObservableObject {
             //print(data)
             do {
                 let mainMenu = try JSONDecoder().decode(MainScreen.self, from: data)
-                print(mainMenu.categories)
+                print(mainMenu.сategories)
                 DispatchQueue.main.async {
-                    self.categories = mainMenu.categories
+                    self.categories = mainMenu.сategories
                 }
             } catch {
                 print("category failed to decode \(error.localizedDescription)")
@@ -55,17 +55,15 @@ struct CategoryView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(0..<10, id: \.self) { category in
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .foregroundColor(Color.red)
-                    .frame(maxWidth: 343)
-                    .frame(height: 148)
-                    .padding(5)
-                    .frame(alignment: .top)
-                    .overlay {
-                        VStack(alignment: .leading) {
-                            Text("smth")
+            ForEach(viewModel.categories, id: \.self) { category in
+                    ZStack(alignment: .topLeading) {
+                        AsyncImage(url: URL(string: category.image_url)) { image in
+                            image.resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 343, maxHeight: 148, alignment: .center)
+                        } placeholder: {
+                            Image(systemName: "photo.on.rectangle.angled").resizable().aspectRatio(contentMode: .fit).frame(width: 343, height: 148)
                         }
+                        
+                        Text(category.name).padding(.leading, 16).padding(.top, 12).lineLimit(2).font(.custom("SFProDisplay", size: 20).bold())
                     }
                     .onTapGesture {
                         print("tapped rounded rectangle")
