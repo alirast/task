@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		4F9B14632A4DC7F800610065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14622A4DC7F800610065 /* AppDelegate.swift */; };
 		4F9B14652A4DC7F800610065 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14642A4DC7F800610065 /* SceneDelegate.swift */; };
-		4F9B14672A4DC7F800610065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14662A4DC7F800610065 /* ViewController.swift */; };
 		4F9B146C2A4DC7FA00610065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F9B146B2A4DC7FA00610065 /* Assets.xcassets */; };
 		4F9B146F2A4DC7FA00610065 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9B146D2A4DC7FA00610065 /* LaunchScreen.storyboard */; };
-		4F9B14772A4DC9B200610065 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14762A4DC9B200610065 /* ContentView.swift */; };
 		4F9B147A2A4DCD2200610065 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14792A4DCD2200610065 /* CoordinatorProtocol.swift */; };
 		4F9B147C2A4DCD7100610065 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B147B2A4DCD7100610065 /* AppCoordinator.swift */; };
 		4F9B14862A4DDAB600610065 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B14852A4DDAB600610065 /* CategoryView.swift */; };
@@ -35,11 +33,9 @@
 		4F9B145F2A4DC7F800610065 /* testTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9B14622A4DC7F800610065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F9B14642A4DC7F800610065 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4F9B14662A4DC7F800610065 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4F9B146B2A4DC7FA00610065 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F9B146E2A4DC7FA00610065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F9B14702A4DC7FA00610065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F9B14762A4DC9B200610065 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4F9B14792A4DCD2200610065 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		4F9B147B2A4DCD7100610065 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4F9B14852A4DDAB600610065 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -93,7 +89,6 @@
 				4F9B14832A4DDA6000610065 /* Coordinator */,
 				4F9B14622A4DC7F800610065 /* AppDelegate.swift */,
 				4F9B14642A4DC7F800610065 /* SceneDelegate.swift */,
-				4F9B14662A4DC7F800610065 /* ViewController.swift */,
 				4F9B146B2A4DC7FA00610065 /* Assets.xcassets */,
 				4F9B146D2A4DC7FA00610065 /* LaunchScreen.storyboard */,
 				4F9B14702A4DC7FA00610065 /* Info.plist */,
@@ -129,7 +124,6 @@
 		4F9B14842A4DDA7C00610065 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4F9B14762A4DC9B200610065 /* ContentView.swift */,
 				4F9B14852A4DDAB600610065 /* CategoryView.swift */,
 				4F9B14872A4DDAD200610065 /* DishesView.swift */,
 				4F9B14892A4DDB1E00610065 /* SearchView.swift */,
@@ -243,12 +237,10 @@
 				4F9B14A62A4E37AE00610065 /* ChosenDishView.swift in Sources */,
 				4F9B14AD2A4F2C6F00610065 /* CartCoordinator.swift in Sources */,
 				4F9B148E2A4DDB3400610065 /* AccountView.swift in Sources */,
-				4F9B14672A4DC7F800610065 /* ViewController.swift in Sources */,
 				4F9B14A92A4EBAD200610065 /* CategoryCoordinator.swift in Sources */,
 				4F9B14632A4DC7F800610065 /* AppDelegate.swift in Sources */,
 				4F9B14AB2A4ECF1F00610065 /* SearchCoordinator.swift in Sources */,
 				4F9B147A2A4DCD2200610065 /* CoordinatorProtocol.swift in Sources */,
-				4F9B14772A4DC9B200610065 /* ContentView.swift in Sources */,
 				4F9B14AF2A4F2D6F00610065 /* AccountCoordinator.swift in Sources */,
 				4F9B14882A4DDAD200610065 /* DishesView.swift in Sources */,
 				4F9B14942A4DEDBE00610065 /* MainCoordinator.swift in Sources */,
