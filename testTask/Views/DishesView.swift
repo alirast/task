@@ -10,12 +10,13 @@ import SwiftUI
 
 //mock items
 struct MockItem: Decodable {
-    static let sampleItem = Item(id: 1, name: "rice", price: 799, weight: 560, description: "In china we have a lot of rice", image_url: "person")
+    static let sampleItem = Item(id: 1, name: "rice", price: 799, weight: 560, description: "In china we have a lot of rice", image_url: "person", tegs: ["all menu"])
 }
 
 struct DetailedMenu: Decodable {
     let dishes: [Item]
 }
+
 
 struct Item: Decodable, Hashable {
     let id: Int
@@ -24,21 +25,20 @@ struct Item: Decodable, Hashable {
     let weight: Int
     let description: String
     let image_url: String
-    
+    let tegs: [String]
 }
 
-struct Teg: Decodable {
-    let name: String
-}
+
 
 class GridViewModel: ObservableObject {
     
     @Published var dishes = [Item]()
     @Published var selectedDish: Item?
     @Published var isShowingDetailView = false
+    @Published var tegs = [String]()
     
     init() {
-
+        var urlArray = [String]()
             guard let url = URL(string: "https://run.mocky.io/v3/aba7ecaa-0a70-453b-b62d-0e326c859b3b") else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard let data = data else { return }
@@ -47,8 +47,12 @@ class GridViewModel: ObservableObject {
                     let menu = try JSONDecoder().decode(DetailedMenu.self, from: data)
                     DispatchQueue.main.async {
                         self.dishes = menu.dishes
+                        
+                        for dish in menu.dishes {
+                            urlArray.append(contentsOf: dish.tegs.map({ String($0) }))
+                            self.tegs = Array(Set(urlArray)).sorted(by: <)
+                        }
                     }
-                    
                 } catch {
                     print("failed to decode \(error.localizedDescription)")
                 }
@@ -60,23 +64,28 @@ class GridViewModel: ObservableObject {
 struct DishesView: View {
     
     @ObservedObject var vm = GridViewModel()
+
     
     let data = Array(1...100).map({ "Item\($0)" })
     let layout = [GridItem(.adaptive(minimum: 90), alignment: .top)]
+    
     var body: some View {
         ZStack {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .top) {
-                        ForEach(0..<10) { i in
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
-                                .frame(width: 80, height: 35)
-                                .overlay {
-                                    VStack(alignment: .leading) {
-                                        Text("Тэги").font(.custom("SFProDisplay", fixedSize: 14))
+                        ForEach(vm.tegs, id: \.self) { teg in
+                  
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
+                                    .frame(width: 80, height: 35)
+                                    .overlay {
+                                        VStack(alignment: .leading) {
+                                            Text(teg).font(.custom("SFProDisplay", fixedSize: 14))
+                                        }
                                     }
-                                }
+                   
+
                         }
                     }
                 }.padding(.horizontal)
