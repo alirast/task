@@ -65,32 +65,37 @@ class GridViewModel: ObservableObject {
 struct DishesView: View {
     
     @ObservedObject var vm = GridViewModel()
-    @StateObject var ord = Order()
-
-    
+    @State private var selectedTag: String?
+   
     let data = Array(1...100).map({ "Item\($0)" })
     let layout = [GridItem(.adaptive(minimum: 90), alignment: .top)]
     
     var body: some View {
         ZStack {
             VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal) {
                     HStack(alignment: .top) {
-                        ForEach(vm.tegs, id: \.self) { teg in
-                  
+                        ForEach(vm.tegs.indices, id: \.self) { tegIndex in
+                            let teg = vm.tegs[tegIndex]
                                 RoundedRectangle(cornerRadius: 15)
-                                    .fill(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
+                                .fill(selectedTag == teg ?  Color(uiColor: UIColor(red: CGFloat(51.0/255), green: CGFloat(100.0/255), blue: CGFloat(224.0/255), alpha: 1.0)) : Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
                                     .frame(width: 80, height: 35)
                                     .overlay {
                                         VStack(alignment: .leading) {
-                                            Text(teg).font(.custom("SFProDisplay", fixedSize: 14))
+                                            Text(teg).foregroundColor(selectedTag == teg ? Color.white : Color.black).font(.custom("SFProDisplay", fixedSize: 14))
                                         }
+                                    }
+
+                                    .onTapGesture {
+                                    selectedTag = teg
+                                        print("selected tag: \(vm.tegs[tegIndex])")
                                     }
                    
 
                         }
                     }
                 }.padding(.horizontal)
+        
                 
                 ScrollView {
                     LazyVGrid(columns: layout, spacing: 10) {
@@ -122,17 +127,22 @@ struct DishesView: View {
                         }
                     }.disabled(vm.isShowingDetailView).padding(.bottom)
                         .padding(.horizontal, 10)
-                }.blur(radius: vm.isShowingDetailView ? 20 : 0).navigationTitle("dishes detail")
+                }.blur(radius: vm.isShowingDetailView ? 20 : 0)
 
                 
                 
             }
             if vm.isShowingDetailView {
                 if let selectedItemInMenu = vm.selectedDish {
-                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView).environmentObject(ord)
+                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView)
                     //ChosenDishView(treat: vm.selectedDish!, isShowingDetailView: $vm.isShowingDetailView)
                 }
             }
+            
+        }
+   
+        .toolbar {
+            CategoryToolbar()
             
         }
     }

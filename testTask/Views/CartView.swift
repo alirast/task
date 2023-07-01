@@ -12,6 +12,16 @@ struct CartView: View {
     @EnvironmentObject var order: Order
     var body: some View {
         VStack {
+            VStack(alignment: .leading) {
+                HStack {
+                    Image(systemName: "person")
+                    VStack {
+                        Text("Salad")
+                        Text("Price")
+                    }
+                }
+            }.frame(width: 300, alignment: .leading)
+            
             Spacer()
             
             List {
