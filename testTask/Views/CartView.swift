@@ -6,10 +6,8 @@
 //
 
 import SwiftUI
-//cart
 
 struct CartView: View {
-    //@EnvironmentObject var order: Order
     
     @State private var number = 1
     
@@ -20,18 +18,26 @@ struct CartView: View {
                     VStack {
                         Spacer()
                         HStack {
-                            
                             VStack(alignment: .leading) {
                                 HStack(spacing: 3) {
-                                    Spacer().frame(width: 62, height: 62).background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255))).cornerRadius(10).overlay {
+                                    Spacer()
+                                        .frame(width: 62, height: 62)
+                                        .background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
+                                        .cornerRadius(10)
+                                        .overlay {
                                         Image(systemName: "person")
                                     }
                                     VStack(alignment: .leading) {
-                                        Text("Salad").font(.custom("SFProDisplay", size: 14))
+                                        Text("Salad")
+                                            .font(.custom("SFProDisplay", size: 14))
                                         HStack(spacing: 3) {
-                                            Text("Price₽").font(.custom("SFProDisplay", size: 14))
-                                            Text("•").foregroundColor(.gray)
-                                            Text("Weight").font(.custom("SFProDisplay", size: 14)).foregroundColor(.gray)
+                                            Text("Price₽")
+                                                .font(.custom("SFProDisplay", size: 14))
+                                            Text("•")
+                                                .foregroundColor(.gray)
+                                            Text("Weight")
+                                                .font(.custom("SFProDisplay", size: 14))
+                                                .foregroundColor(.gray)
                                         }
                                         
                                     }
@@ -42,21 +48,26 @@ struct CartView: View {
                             VStack(alignment: .trailing) {
                                 HStack {
                                     Spacer()
-                                        .frame(width: 99, height: 32).background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255))).cornerRadius(10).overlay {
+                                        .frame(width: 99, height: 32)
+                                        .background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
+                                        .cornerRadius(10)
+                                        .overlay {
                                             HStack(spacing: 20) {
                                                 Button(action: {
                                                     if number > 0 {
                                                         number -= 1
                                                     }
                                                 }) {
-                                                    Image(systemName: "minus").foregroundColor(.black)
+                                                    Image(systemName: "minus")
+                                                        .foregroundColor(.black)
                                                 }
                                                 Text("\(number)")
                                                 
                                                 Button(action: {
                                                     number += 1
                                                 }) {
-                                                    Image(systemName: "plus").foregroundColor(.black)
+                                                    Image(systemName: "plus")
+                                                        .foregroundColor(.black)
                                                 }
                                             }
                                         }
@@ -66,11 +77,8 @@ struct CartView: View {
                         Spacer()
                     }
                 }
-                
-                
-                
-                
             }
+            
             Spacer()
             
             Button {

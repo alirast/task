@@ -10,17 +10,9 @@ import UIKit
 import SwiftUI
 
 class SearchCoordinator: CoordinatorProtocol {
-    /*var rootViewController = UIViewController()
-    var navigationController: UINavigationController?
-    func start() {
-        let view = SearchView()
-        rootViewController = UIHostingController(rootView: view)
-        //navigationController = UINavigationController(rootViewController: rootViewController)
-//        navigationController?.isNavigationBarHidden = false
-    }*/
-    
     
     var rootViewController = UINavigationController()
+    
     lazy var searchViewController: UIViewController = {
         var viewController = UIViewController()
         let view = SearchView()

@@ -7,10 +7,11 @@
 
 import SwiftUI
 
+
 struct ChosenDishView: View {
-    //@ObservedObject var viewModel: GridViewModel
     let treat: Item
     @Binding var isShowingDetailView: Bool
+ 
  
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
@@ -35,21 +36,29 @@ struct ChosenDishView: View {
                     
                     HStack(spacing: 5) {
                         Spacer()
-                            .frame(width: 40, height: 40).background(Color.white).cornerRadius(10)
+                            .frame(width: 40, height: 40)
+                            .background(Color.white)
+                            .cornerRadius(10)
                             .overlay {
                                 Button {
                                     
                                 } label: {
-                                    Image(systemName: "heart").font(.system(size: 28, weight: .bold)).foregroundColor(.black)
+                                    Image(systemName: "heart")
+                                        .font(.system(size: 28, weight: .bold))
+                                        .foregroundColor(.black)
                                 }
                             }
                         Spacer()
-                            .frame(width: 40, height: 40).background(Color.white).cornerRadius(10).overlay {
-                                
+                            .frame(width: 40, height: 40)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .overlay {
                                 Button {
                                     isShowingDetailView = false
                                 } label: {
-                                    Image(systemName: "xmark").font(.system(size: 28, weight: .bold)).foregroundColor(.black)
+                                    Image(systemName: "xmark")
+                                        .font(.system(size: 28, weight: .bold))
+                                        .foregroundColor(.black)
                                 }
                             }
                     }
@@ -58,32 +67,43 @@ struct ChosenDishView: View {
                 }
                 
                 Spacer()
+                
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(treat.name).font(.custom("SFProDisplay", size: 16).bold())
+                    Text(treat.name)
+                        .font(.custom("SFProDisplay", size: 16).bold())
                     HStack {
-                        Text("\(treat.price)₽").font(.custom("SFProDisplay", size: 14))
+                        Text("\(treat.price)₽")
+                            .font(.custom("SFProDisplay", size: 14))
                         Text("•")
-                        Text("\(treat.weight)г").font(.custom("SFProDisplay", size: 14)).foregroundColor(.gray)
+                        Text("\(treat.weight)г")
+                            .font(.custom("SFProDisplay", size: 14))
+                            .foregroundColor(.gray)
                     }
                     
-                    Text(treat.description).font(.custom("SFProDisplay", size: 14)).fixedSize(horizontal: false, vertical: true)
+                    Text(treat.description)
+                        .font(.custom("SFProDisplay", size: 14))
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(width: 311, alignment: .leading)
+                
                 Spacer()
                 
                 Button {
                     isShowingDetailView = false
                 } label: {
-                    Text("Добавить в корзину").foregroundColor(.white).font(.custom("SFProDisplay", size: 16))
-                }.frame(width: 311, height: 48).background(Color(uiColor: UIColor(red: CGFloat(51.0/255), green: CGFloat(100.0/255), blue: CGFloat(224.0/255), alpha: 1.0))).cornerRadius(10)
+                    Text("Добавить в корзину")
+                        .foregroundColor(.white)
+                        .font(.custom("SFProDisplay", size: 16))
+                }
+                    .frame(width: 311, height: 48)
+                    .background(Color(uiColor: UIColor(red: CGFloat(51.0/255), green: CGFloat(100.0/255), blue: CGFloat(224.0/255), alpha: 1.0)))
+                    .cornerRadius(10)
 
             }
             .padding(.vertical, 25)
             .padding(.horizontal, 30)
             .background()
             .cornerRadius(10)
-            
-
         }
         .frame(maxWidth: 343, maxHeight: 446)
         .shadow(radius: 40)

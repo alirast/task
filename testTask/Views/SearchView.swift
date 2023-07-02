@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
-//search
 
 struct SearchView: View {
     var body: some View {
         Text("Search View")
-            
             .toolbar {
                 ToolContent()
             }

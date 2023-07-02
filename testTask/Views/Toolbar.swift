@@ -32,12 +32,4 @@ struct ToolContent: ToolbarContent {
 }
 
 
-struct CategoryToolbar: ToolbarContent {
-    
-    var body: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
-            Image("profilePicture").resizable().frame(width: 44, height: 44).clipShape(Circle()).padding(.trailing)
-        }
-    }
-        
-}
+

@@ -7,68 +7,13 @@
 
 import SwiftUI
 import Combine
-//dishes
-
-//mock items
-struct MockItem: Decodable {
-    static let sampleItem = Item(id: 1, name: "rice", price: 799, weight: 560, description: "In china we have a lot of rice", image_url: "person", tegs: ["all menu"])
-}
-
-struct DetailedMenu: Decodable {
-    let dishes: [Item]
-}
-
-
-struct Item: Decodable, Hashable {
-    let id: Int
-    let name: String
-    let price: Int
-    let weight: Int
-    let description: String
-    let image_url: String
-    let tegs: [String]
-}
-
-
-
-class GridViewModel: ObservableObject {
-    
-    @Published var dishes = [Item]()
-    @Published var selectedDish: Item?
-    @Published var isShowingDetailView = false
-    @Published var tegs = [String]()
-    
-    init() {
-        var urlArray = [String]()
-            guard let url = URL(string: "https://run.mocky.io/v3/aba7ecaa-0a70-453b-b62d-0e326c859b3b") else { return }
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data else { return }
-                //check response
-                do {
-                    let menu = try JSONDecoder().decode(DetailedMenu.self, from: data)
-                    DispatchQueue.main.async {
-                        self.dishes = menu.dishes
-                        
-                        for dish in menu.dishes {
-                            urlArray.append(contentsOf: dish.tegs.map({ String($0) }))
-                            self.tegs = Array(Set(urlArray)).sorted(by: <)
-                        }
-                    }
-                } catch {
-                    print("failed to decode \(error.localizedDescription)")
-                }
-            }.resume()
-        }
-    }
-
 
 struct DishesView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @ObservedObject var vm = GridViewModel()
-    @State private var selectedTag: String?
-    //@StateObject var ord = Order()
+    @ObservedObject var vm = DishesViewModel()
+    @State private var selectedTeg: String?
     @State var name = ""
    
     let data = Array(1...100).map({ "Item\($0)" })
@@ -84,28 +29,34 @@ struct DishesView: View {
                             let teg = vm.tegs[tegIndex]
                             let firstTeg = vm.tegs[0]
                             
-                            if vm.tegs[tegIndex] == firstTeg && selectedTag == nil {
-                                RoundedRectangle(cornerRadius: 15).fill(Color(uiColor: UIColor(red: CGFloat(51.0/255), green: CGFloat(100.0/255), blue: CGFloat(224.0/255), alpha: 1.0))).frame(width: 80, height: 35).overlay {
+                            if vm.tegs[tegIndex] == firstTeg && selectedTeg == nil {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(Color(uiColor: UIColor(red: CGFloat(51.0/255), green: CGFloat(100.0/255), blue: CGFloat(224.0/255), alpha: 1.0))).frame(width: 80, height: 35)
+                                    .overlay {
                                     VStack(alignment: .leading) {
-                                        Text(firstTeg).foregroundColor(Color.white).font(.custom("SFProDisplay", fixedSize: 14))
+                                        Text(firstTeg)
+                                            .foregroundColor(Color.white)
+                                            .font(.custom("SFProDisplay", fixedSize: 14))
                                     }
                                 }
                                 .onTapGesture {
-                                    selectedTag = firstTeg
-                                    print("selected teg \(selectedTag)")
+                                    selectedTeg = firstTeg
+                                    print("selected teg \(selectedTeg)")
                                 }
                             } else {
                                 RoundedRectangle(cornerRadius: 15)
-                                    .fill(selectedTag == teg ?  Color(uiColor: UIColor(red: CGFloat(51.0/255), green: CGFloat(100.0/255), blue: CGFloat(224.0/255), alpha: 1.0)) : Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
+                                    .fill(selectedTeg == teg ?  Color(uiColor: UIColor(red: CGFloat(51.0/255), green: CGFloat(100.0/255), blue: CGFloat(224.0/255), alpha: 1.0)) : Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
                                     .frame(width: 80, height: 35)
                                     .overlay {
                                         VStack(alignment: .leading) {
-                                            Text(teg).foregroundColor(selectedTag == teg ? Color.white : Color.black).font(.custom("SFProDisplay", fixedSize: 14))
+                                            Text(teg)
+                                                .foregroundColor(selectedTeg == teg ? Color.white : Color.black)
+                                                .font(.custom("SFProDisplay", fixedSize: 14))
                                         }
                                     }
                                 
                                     .onTapGesture {
-                                        selectedTag = teg
+                                        selectedTeg = teg
                                         print("selected tag: \(vm.tegs[tegIndex])")
                                     }
                                 
@@ -120,9 +71,8 @@ struct DishesView: View {
                     LazyVGrid(columns: layout, spacing: 10) {
                         ForEach(vm.dishes, id: \.self) { dish in
                             
-                            if selectedTag == nil || selectedTag == dish.tegs[0] {
+                            if selectedTeg == nil || selectedTeg == dish.tegs[0] {
                                 if dish.tegs.contains(dish.tegs[0]) {
-                                    //Text("zero")
                                     VStack(alignment: .leading, spacing: 4) {
                                         Spacer()
                                             .frame(width: 109, height: 109)
@@ -131,27 +81,30 @@ struct DishesView: View {
                                             .cornerRadius(10)
                                             .overlay {
                                                 AsyncImage(url: URL(string: dish.image_url)) { image in
-                                                    image.resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 79, maxHeight: 88, alignment: .center)
+                                                    image
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(maxWidth: 79, maxHeight: 88, alignment: .center)
                                                 } placeholder: {
                                                     Image(systemName: "photo.on.rectangle.angled")
                                                 }
                                             }
                                         
                                         Text(dish.name)
-                                            .font(.custom("SFProDisplay", fixedSize: 14)).frame(maxWidth: .infinity, alignment: .leading)
+                                            .font(.custom("SFProDisplay", fixedSize: 14))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
                                     }.onTapGesture {
                                         print("CHOSEN")
                                         vm.selectedDish = dish
                                         vm.isShowingDetailView = true
                                         print(vm.selectedDish?.tegs)
-                                        guard let selectedTag = selectedTag else { return }
+                                        guard let selectedTag = selectedTeg else { return }
                                         print(dish.tegs.contains(selectedTag))
                                     }
                                     .padding(.horizontal)
                                 }
                                 
-                            } else if dish.tegs.contains(selectedTag!) {
-                                //Text("something")
+                            } else if dish.tegs.contains(selectedTeg!) {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Spacer()
                                         .frame(width: 109, height: 109)
@@ -160,54 +113,31 @@ struct DishesView: View {
                                         .cornerRadius(10)
                                         .overlay {
                                             AsyncImage(url: URL(string: dish.image_url)) { image in
-                                                image.resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 79, maxHeight: 88, alignment: .center)
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .frame(maxWidth: 79, maxHeight: 88, alignment: .center)
                                             } placeholder: {
                                                 Image(systemName: "photo.on.rectangle.angled")
                                             }
                                         }
                                     
                                     Text(dish.name)
-                                        .font(.custom("SFProDisplay", fixedSize: 14)).frame(maxWidth: .infinity, alignment: .leading)
+                                        .font(.custom("SFProDisplay", fixedSize: 14))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }.onTapGesture {
                                     print("CHOSEN")
                                     vm.selectedDish = dish
                                     vm.isShowingDetailView = true
                                     print(vm.selectedDish?.tegs)
-                                    guard let selectedTag = selectedTag else { return }
+                                    guard let selectedTag = selectedTeg else { return }
                                     print(dish.tegs.contains(selectedTag))
                                 }
                                 .padding(.horizontal)
                             }
-                            
-                           /*
-                            VStack(alignment: .leading, spacing: 4) {
-                                Spacer()
-                                    .frame(width: 109, height: 109)
-                                    .background(Color(red: CGFloat(248.0/255), green: CGFloat(247.0/255), blue: CGFloat(245.0/255)))
-                                    .background(Color.gray)
-                                    .cornerRadius(10)
-                                    .overlay {
-                                        AsyncImage(url: URL(string: dish.image_url)) { image in
-                                            image.resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 79, maxHeight: 88, alignment: .center)
-                                        } placeholder: {
-                                            Image(systemName: "photo.on.rectangle.angled")
-                                        }
-                                    }
-                                
-                                Text(dish.name)
-                                    .font(.custom("SFProDisplay", fixedSize: 14)).frame(maxWidth: .infinity, alignment: .leading)
-                            }*/
-                            /*.onTapGesture {
-                                print("CHOSEN")
-                                vm.selectedDish = dish
-                                vm.isShowingDetailView = true
-                                print(vm.selectedDish?.tegs)
-                                guard let selectedTag = selectedTag else { return }
-                                print(dish.tegs.contains(selectedTag))
-                            }
-                            .padding(.horizontal) //can remove it to make blue big*/
                         }
-                    }.disabled(vm.isShowingDetailView).padding(.bottom)
+                    }.disabled(vm.isShowingDetailView)
+                        .padding(.bottom)
                         .padding(.horizontal, 10)
                 }.blur(radius: vm.isShowingDetailView ? 20 : 0)
 
@@ -216,7 +146,7 @@ struct DishesView: View {
             }
             if vm.isShowingDetailView {
                 if let selectedItemInMenu = vm.selectedDish {
-                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView)//.environmentObject(ord)
+                    ChosenDishView(treat: selectedItemInMenu, isShowingDetailView: $vm.isShowingDetailView)
                 }
             }
             
@@ -238,14 +168,4 @@ struct DishesView_Previews: PreviewProvider {
     }
 }
 
-struct NavBackButton: View {
-    let dismiss: DismissAction
-    
-    var body: some View {
-        Button {
-            dismiss()
-        } label: {
-            Image(systemName: "chevron.backward").foregroundColor(.black)
-        }
-    }
-}
+

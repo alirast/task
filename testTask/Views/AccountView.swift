@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//account
 
 struct AccountView: View {
     var body: some View {
