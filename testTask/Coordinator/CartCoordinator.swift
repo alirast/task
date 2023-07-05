@@ -8,19 +8,31 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
-class CartCoordinator: CoordinatorProtocol {
+class CartCoordinator: CoordinatorProtocol, ObservableObject {
+    
+    var itemy: String = ""
 
     var rootViewController = UINavigationController()
     
     lazy var cartViewController: UIViewController = {
         var viewController = UIViewController()
-        let view = CartView()
+        var view = CartView(coord: self)
+        view.getItem(itemy)
         viewController = UIHostingController(rootView: view)
         return viewController
     }()
     
     func start() {
         rootViewController.setViewControllers([cartViewController], animated: true)
+
+    }
+    
+    func getName(_ name: String) {
+        self.itemy = name
+        var view = CartView(coord: self)
+        view.getItem(self.itemy)
+    
     }
 }

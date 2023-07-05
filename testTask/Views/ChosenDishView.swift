@@ -6,11 +6,44 @@
 //
 
 import SwiftUI
+import UIKit
+
+class Some {
+    var items = [Item]()
+
+    
+    func getItems(_ items: [Item]) {
+        self.items = items
+
+    }
+}
+
+
+
+class ChosenDishCoordinator: ObservableObject {
+  
+    @Published var selectedDishes: [Item] = []
+    @Published var isCartEmpty = true
+    var cartCoordinator = CartCoordinator()
+    var some = Some()
+    
+    func addToCart(dish: Item) {
+        
+        cartCoordinator.getName(dish.name)
+        isCartEmpty = false
+        selectedDishes.append(dish)
+        print("selected dishes \(selectedDishes)")
+        some.getItems(selectedDishes)
+        
+    }
+}
 
 
 struct ChosenDishView: View {
     let treat: Item
     @Binding var isShowingDetailView: Bool
+    @StateObject private var coordinator = ChosenDishCoordinator()
+    
  
  
     var body: some View {
@@ -89,7 +122,16 @@ struct ChosenDishView: View {
                 Spacer()
                 
                 Button {
+               
                     isShowingDetailView = false
+                    //coordinator.isCartEmpty = false
+                    coordinator.addToCart(dish: treat)
+                    //coordinator.selectedDishes = coordinator.$selectedDishes
+                    coordinator.$selectedDishes.sink { selectedDishes in
+              
+                    }
+                    
+             
                 } label: {
                     Text("Добавить в корзину")
                         .foregroundColor(.white)
@@ -108,6 +150,7 @@ struct ChosenDishView: View {
         .frame(maxWidth: 343, maxHeight: 446)
         .shadow(radius: 40)
         }
+
     }
 
 

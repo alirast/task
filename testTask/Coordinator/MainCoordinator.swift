@@ -24,15 +24,18 @@ class MainCoordinator: CoordinatorProtocol {
         self.childCoordinators.append(categoryCoordinator)
         let categoryVC = categoryCoordinator.rootViewController
         categoryVC.tabBarItem = UITabBarItem(title: "Главная", image: UIImage(named: "category"), selectedImage: nil)
-     
+        
         let searchCoordinator = SearchCoordinator()
         searchCoordinator.start()
         self.childCoordinators.append(searchCoordinator)
         let searchVC = searchCoordinator.rootViewController
         searchVC.tabBarItem = UITabBarItem(title: "Поиск", image: UIImage(named: "search"), selectedImage: nil)
         
+        
+        
         let cartCoordinator = CartCoordinator()
         cartCoordinator.start()
+        var chosen = ChosenDishCoordinator()
         self.childCoordinators.append(cartCoordinator)
         let cartVC = cartCoordinator.rootViewController
         cartVC.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(named: "cart"), selectedImage: nil)
@@ -43,7 +46,10 @@ class MainCoordinator: CoordinatorProtocol {
         let accountVC = accountCoordinator.rootViewController
         accountVC.tabBarItem = UITabBarItem(title: "Аккаунт", image: UIImage(named: "account"), selectedImage: nil)
         
-        self.rootViewController.viewControllers = [categoryVC, searchVC, cartVC, accountVC]
+        let final = MyVC()
+        final.tabBarItem = UITabBarItem(title: "won", image: nil, selectedImage: nil)
+        
+        self.rootViewController.viewControllers = [categoryVC, searchVC, cartVC, accountVC, final]
         
     }
 }

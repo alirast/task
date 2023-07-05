@@ -9,11 +9,26 @@ import SwiftUI
 
 struct CartView: View {
     
+    @ObservedObject var coord: CartCoordinator
     @State private var number = 1
+  
+    @State private var item: String = ""
+
     
+ 
     var body: some View {
         VStack {
             ScrollView {
+                
+                Button {
+                    print("item", item)
+                    print("got item from cart coordinator")
+                    
+                    
+                } label: {
+                    Text("FUU")
+                }
+
                 ForEach(0...5, id: \.self) { item in
                     VStack {
                         Spacer()
@@ -94,15 +109,34 @@ struct CartView: View {
             }
             .padding()
         }
+   
         
         .toolbar {
             ToolContent()
         }
+        
     }
+    
+    mutating func getItem(_ name: String) {
+        item = coord.itemy
+
+        let treat = coord.itemy
+        self.getTreat(treat)
+        
+        
+    }
+    
+    func getTreat(_ name: String) {
+
+        let newTreat = name
+
+      
+    }
+
 }
 
-struct CartView_Previews: PreviewProvider {
+/*struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView()
+        CartView(coord: CartCoordinator())
     }
-}
+}*/
